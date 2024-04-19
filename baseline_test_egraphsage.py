@@ -26,7 +26,7 @@ parser.add_argument('--savedir', default="./results/", dest="save_dir", help="Di
 
 group = parser.add_mutually_exclusive_group()
 group.add_argument('--feature_attack', action='store_true', dest='feature_attack')
-group.add_argument('--structure_attack', choices = ['benign_from_C', 'benign_from_each_mal', 'malicious_from_C', 'add_node'], dest='structure_attack')
+group.add_argument('--structure_attack', choices = ['benign_from_C', 'malicious_from_C', 'add_node'], dest='structure_attack')
 
 # args = parser.parse_args(['--test', 'preprocessed_data/ToN_IoT/ddos_test.csv', '--feature_attack'])
 args = parser.parse_args()

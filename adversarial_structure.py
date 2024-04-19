@@ -96,7 +96,6 @@ def aa_add_nodes(test_data, model, scaler_file, test_model):
         results_df.index = amounts
         
         results_list.append(results_df)
-    # print(results_df)
     
     all_results = pd.concat(results_list)
     
@@ -112,14 +111,9 @@ def generate_malicious_from_C(data, amount):
     benigns = data[data.Label == 0]
     malicious = data[data.Label == 1]
     sampled_mal = malicious.sample(len(malicious['Src IP'].unique()) * amount, replace=True)
-    # print(f"Generating {len(malicious['Src IP'].unique()) * amount} new malicious..")
     
-    # print(f"Original Dst IP addresses: {sampled_mal['Dst IP'].head()}")
     dst_ip = benigns.sample(len(sampled_mal), replace=True).loc[:, 'Dst IP'].to_list()
     sampled_mal["Dst IP"] = dst_ip
-    # print(f"Generating {len(malicious['Src IP'].unique()) * amount} new malicious")
-    # print(f"Modified Dst IP addresses: {sampled_mal['Dst IP'].head()}")
-    # print(f"Sampled mal size: {sampled_mal.shape}")
     return sampled_mal.copy()
 
 def generate_malicious_from_C2(data, amount):
@@ -136,14 +130,9 @@ def generate_malicious_from_C2(data, amount):
     src_ip = malicious['Src IP'].unique().tolist() * amount
     sampled_mal['Src IP'] = src_ip #This is to force to have <amount> malicious from each controlled node.
     
-    # print(f"Generating {len(malicious['Src IP'].unique()) * amount} new malicious..")
-    
-    # print(f"Original Dst IP addresses: {sampled_mal['Dst IP'].head()}")
     dst_ip = benigns.sample(len(sampled_mal), replace=True).loc[:, 'Dst IP'].to_list()
     sampled_mal["Dst IP"] = dst_ip
-    # print(f"Generating {len(malicious['Src IP'].unique()) * amount} new malicious")
-    # print(f"Modified Dst IP addresses: {sampled_mal['Dst IP'].head()}")
-    # print(f"Sampled mal size: {sampled_mal.shape}")
+
     return sampled_mal.copy()
 
 def generate_benign_from_C(data, amount):
@@ -162,32 +151,6 @@ def generate_benign_from_C(data, amount):
     sampled_ben['Src IP'] = src_ip
     return sampled_ben.copy()
 
-def generate_benign_for_each_mal(data, amount):
-    """For each malicious flow, add <amount> benign samples to a random destination.
-
-    Args:
-        data (pd.DataFrame): netflow dataframe
-        amount (int): how many new benign flows for each malicious
-    """
-    malicious = data[data.Label == 1]
-    print(f"Unique Src IP in malicious value counts: {malicious['Src IP'].value_counts().head()}")
-    
-    # Sample 
-    sampled_ben = data[data.Label==0].sample(len(malicious) * amount, replace = True)
-    src_ip = malicious['Src IP'].to_list()
-    
-    print(f"Generating {len(malicious) * amount} new benigns..")
-    src_ip = src_ip * amount
-    
-    # print(f"Original Ben: size = {len(sampled_ben)}. Number of mal = {len(malicious)}")
-    # print(sampled_ben.loc[:, ['Dur', 'Src IP']].head())
-    
-    sampled_ben['Src IP'] = src_ip
-    # print(f"Modified Ben: size = {len(sampled_ben)}. Number of mal = {len(malicious)}")
-    # print(sampled_ben.loc[:, ['Dur', 'Src IP']].head())
-    # print(f"Unique Src IP in malicious value counts: {sampled_ben['Src IP'].value_counts().head()}")
-    return sampled_ben.copy()
-
 def aa_add_edge_C2X(test_data, model, scaler_file, test_model, attack):
     mal_recall_scores = []
     mal_precision_scores = []
@@ -202,13 +165,11 @@ def aa_add_edge_C2X(test_data, model, scaler_file, test_model, attack):
     gen_func = None
     if attack == 'benign_from_C':
         gen_func = generate_benign_from_C
-    elif attack == 'benign_from_each_mal':
-        gen_func = generate_benign_for_each_mal
     elif attack == 'malicious_from_C':
         gen_func = generate_malicious_from_C
     else:
         print("No correct attack specified.")
-        print("Valid options are: ['benign_from_C', 'benign_from_each_mal', 'malicious_from_C']")
+        print("Valid options are: ['benign_from_C', 'malicious_from_C']")
         sys.exit()
     
     for amount in amounts:
