@@ -18,6 +18,10 @@ For reasons of space and copyright we cannot include in this repo all the consid
 It is likely that a "novel" experiment leads to results that are slighlty different from the ones reported in the paper. This is normal, as preprocessing operations might be different from time to time. Moreover, in the paper we report the average results over a sufficiently large number of executions.
 
 ## Organization
+
+## Contents
+
+The repository is organized as follows: 
 ```
 .
 ├── datasets                    # Datasets directory
@@ -34,9 +38,12 @@ It is likely that a "novel" experiment leads to results that are slighlty differ
     ├── CTU
     └──  ToN_IoT
 ```
-## Contents
+We first explain the content of the directories and then we present each src file.
 
+#### datasets folder
+This folder contains all the raw datasets used in our paper. It is organized in two subdirectories: CTU and ToN-IoT. Each of them contains the raw files.
 
+IMPORTANT: We create a separate collection gathering together all the netflows belonging to a specific attack in each dataset. As a result, we obtain one different csv file for each attack. 
 
 
 ## Instructions
