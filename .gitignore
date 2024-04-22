@@ -1,5 +1,8 @@
 __pycache__/*
 datasets/*
+!datasets/CTU
+datasets/CTU/*
+!datasets/CTU/data.zip
 figures/*
 preprocessed_data/*
 results/*
