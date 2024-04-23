@@ -12,6 +12,8 @@ If you use any part of this codebase, you are kindly invited to cite our paper:
 }
 ```
 
+Feel free to contact me for any issue in reproducing our experiments (andrea.venturi@unimore.it).
+
 ## Organization
 This README is structured into the following sections:
 - [Disclaimer](#disclaimer)
@@ -26,8 +28,6 @@ Due to space and copyright constraints, this repository does not include all dat
 To facilitate replication of our experiments, we provide the full codebase used in the research and a sample of the CTU-13 dataset. Specifically, we include malicious netflows for the `menti` botnet and benign netflows necessary for training and testing the GNN-based detection models. We extend our gratitude to the dataset authors for allowing us to share this sample.
 
 It is likely that a "novel" experiment leads to results that are slighlty different from the ones reported in the paper. This is normal, as preprocessing operations might be different from time to time. Moreover, in the paper we report the average results over a sufficiently large number of executions.
-
-Feel free to contact me for any issue (andrea.venturi@unimore.it).
 
 ## Contents
 
@@ -150,7 +150,9 @@ Alternatively, you can follow this straightforward workflow:
 Kudos to the authors of:
 
 #### E-GraphSAGE
-[Paper] (https://ieeexplore.ieee.org/abstract/document/9789878) [Repo](https://github.com/waimorris/E-GraphSAGE)
+Paper: https://ieeexplore.ieee.org/abstract/document/9789878
+
+Official Repository: https://github.com/waimorris/E-GraphSAGE
 
 Reference:
 ```
