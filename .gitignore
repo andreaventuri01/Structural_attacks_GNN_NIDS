@@ -9,3 +9,4 @@ preprocessed_data/ToN_IoT/*.csv
 results/**/*.pth
 results/**/*.skl
 results/**/*.csv
+case_study/test.mar
