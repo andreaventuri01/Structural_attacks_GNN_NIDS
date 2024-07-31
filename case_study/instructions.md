@@ -5,7 +5,7 @@
 ## Instructions to reproduce the attacks
 
 1. Download and install Marionnet (https://www.marionnet.org/site/index.php/en/), Argus (https://openargus.org/using-argus).
-2. Download and open the provided `test.mar` file inside Marionnet.
+2. Download `test.mar` from the following [link](https://drive.google.com/file/d/13zcN91ALcBQkuAuNjekHzJA9VRs33fww/view?usp=sharing) and open the `test.mar` file inside Marionnet.
 3. Start all the machines.
 4. Once the hosts are up and running, run the following `tcpdump -w /mnt/hostfs/data.pcap -i any` command in the `router` host. This will put `tcpdump` in listen mode and will collect all the packets in `data.pcap`.
 5. According to the attack, follow one of the following substeps:
